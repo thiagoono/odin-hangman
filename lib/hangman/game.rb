@@ -4,6 +4,7 @@ class Game
   attr_reader :words_list
 
   def initializer
+    # Reads the words list and filters by size
     @words_list = []
 
     File.open("../../data/google-10000-english-no-swears.txt", "r") do |file|
@@ -17,6 +18,9 @@ class Game
     @secret_word = select_word
   end
 
+  private
+
+  # Selects a random word from the list and checks if it is not repeated
   def select_word
     new_word = secret_word
     new_word = words_list.sample until new_word != secret_word
