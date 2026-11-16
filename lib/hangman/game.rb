@@ -17,7 +17,6 @@ class Game
     @attempted_letters = []
     @current_state = Array.new(@secret_word.size, "_")
     display_board
-    puts secret_word
   end
 
   # Makes a new attempt
@@ -35,16 +34,6 @@ class Game
   end
 
   private
-
-  # Reads the words list and filter by word size
-  def filter_list
-    filtered_list = []
-    File.open(File.join(__dir__, "..", "..", "data", "google-10000-english-no-swears.txt"), "r") do |file|
-      file.readlines.each { |word| filtered_list << word if word.size.between?(6, 13) }
-    end
-    puts filtered_list
-    filtered_list
-  end
 
   # Selects a random word from the list and checks if it is not repeated
   def select_word

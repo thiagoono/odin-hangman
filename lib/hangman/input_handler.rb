@@ -15,4 +15,13 @@ module InputHandler
     input = gets.strip.downcase
     input == "y"
   end
+
+  # Reads the words list and filter by word size
+  def filter_list
+    filtered_list = []
+    File.open(File.join(__dir__, "..", "..", "data", "google-10000-english-no-swears.txt"), "r") do |file|
+      file.readlines.each { |word| filtered_list << word if word.size.between?(6, 13) }
+    end
+    filtered_list
+  end
 end
