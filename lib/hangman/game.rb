@@ -4,13 +4,14 @@ require_relative "displayer"
 class Game
   include(Displayer)
 
-  attr_accessor :secret_word
+  attr_accessor :secret_word, :failures
   attr_reader :words_list, :attempted_letters, :current_state
 
   def initialize
     # Reads the words list and filters by size
     @words_list = filter_list
     @secret_word = select_word
+    @failures = 0
     @attempted_letters = []
     @current_state = []
     display_board
@@ -48,7 +49,11 @@ class Game
   end
 
   def try_letter(char)
-    success_attempt(char) if secret_word.include?(char)
+    if secret_word.include?(char)
+      success_attempt(char)
+    else
+      failed_attempt
+    end
 
     update_attempted_letters(char)
   end
@@ -59,5 +64,9 @@ class Game
 
   def update_attempted_letters(char)
     attempted_letters << char
+  end
+
+  def failed_attempt
+    failures + 1
   end
 end
