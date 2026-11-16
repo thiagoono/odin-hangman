@@ -11,13 +11,18 @@ class Game
   attr_accessor :secret_word, :failures
   attr_reader :words_list, :attempted_letters, :current_state
 
-  def initialize
-    # Reads the words list and filters by size
-    @words_list = filter_list
-    @secret_word = select_word.strip
+  def initialize(playing_again)
     @failures = 0
     @attempted_letters = []
-    @current_state = Array.new(@secret_word.size, "_")
+    if !playing_again && ask_to_load?
+      load_game
+    else
+      # Reads the words list and filters by size
+      @words_list = filter_list
+      @secret_word = select_word.strip
+      @current_state = Array.new(@secret_word.size, "_")
+    end
+
     display_board
   end
 
@@ -59,7 +64,7 @@ class Game
   # Updates the current state when the attempt is successful
   def success_attempt(char)
     secret_word.each_char.with_index do |secret_char, index|
-      current_state[index] = char if char.downcase == secret_char
+      @current_state[index] = char if char.downcase == secret_char
     end
   end
 

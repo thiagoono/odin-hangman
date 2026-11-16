@@ -27,4 +27,11 @@ module InputHandler
     end
     filtered_list
   end
+
+  def ask_to_load?
+    return false unless File.file?(File.join(__dir__, "..", "..", "data", "saved_game.json"))
+
+    puts "Would you like to load your last game?(y/n)"
+    gets.strip.downcase == "y"
+  end
 end
