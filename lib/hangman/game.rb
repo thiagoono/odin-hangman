@@ -79,7 +79,7 @@ class Game
 
   # Adds one to the failures count
   def failed_attempt
-    failures + 1
+    @failures += 1
   end
 
   # Checks if the game has ended
