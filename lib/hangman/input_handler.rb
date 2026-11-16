@@ -2,12 +2,14 @@
 module InputHandler
   # Gets the char that will be attempted from the user
   def ask_attempt
-    char = gets.strip.upcase
-    until char.match?(/^[A-Z]$/) && !attempted_letters.include?(char)
+    input = gets.strip.upcase
+    save_game if input == "SAVE"
+    until input.match?(/^[A-Z]$/) && !attempted_letters.include?(input)
       print "\e[1A\e[2K"
-      char = gets.strip.upcase
+      input = gets.strip.upcase
+      save_game if input == "SAVE"
     end
-    char
+    input
   end
 
   def play_again?
