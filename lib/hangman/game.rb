@@ -18,6 +18,7 @@ class Game
     puts secret_word
   end
 
+  # Makes a new attempt
   def attempt?
     char = ask_attempt
     try_letter(char)
@@ -25,7 +26,7 @@ class Game
     display_board
     return false unless game_ended?
 
-    end_game?
+    end_game
   end
 
   private
@@ -46,12 +47,14 @@ class Game
     new_word
   end
 
+  # Gets the char that will be attempted from the user
   def ask_attempt
     char = ""
     char = gets.strip.upcase until char.match?(/^[A-Z]$/)
     char
   end
 
+  # Checks if the attempt was successful
   def try_letter(char)
     if secret_word.include?(char.downcase)
       success_attempt(char)
@@ -62,21 +65,24 @@ class Game
     update_attempted_letters(char)
   end
 
+  # Updates the current state when the attempt is successful
   def success_attempt(char)
     secret_word.each_char.with_index do |secret_char, index|
       current_state[index] = char if char.downcase == secret_char
     end
-    p current_state
   end
 
+  # Updates the attempted letters
   def update_attempted_letters(char)
     attempted_letters << char
   end
 
+  # Adds one to the failures count
   def failed_attempt
     failures + 1
   end
 
+  # Checks if the game has ended
   def game_ended?
     return !game_over if failures >= 6
 
@@ -85,7 +91,8 @@ class Game
     false
   end
 
-  def end_game?
+  # Ends the game
+  def end_game
     display_answer
     display_play_again
   end
