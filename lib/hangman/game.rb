@@ -42,6 +42,7 @@ class Game
   def select_word
     new_word = secret_word
     new_word = words_list.sample until new_word != secret_word
+    new_word
   end
 
   def ask_attempt
@@ -82,10 +83,5 @@ class Game
   def end_game?
     display_answer
     display_play_again
-
-    input = gets.strip.downcase
-    return true if input == "y"
-
-    false
   end
 end
