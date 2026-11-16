@@ -10,7 +10,7 @@ class Game
   def initialize
     # Reads the words list and filters by size
     @words_list = filter_list
-    @secret_word = select_word
+    @secret_word = select_word.strip
     @failures = 0
     @attempted_letters = []
     @current_state = Array.new(@secret_word.size, "_")
