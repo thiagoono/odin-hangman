@@ -48,6 +48,7 @@ class Game
   def ask_attempt
     char = ""
     char = gets.strip.upcase until char.match?(/^[A-Z]$/)
+    char
   end
 
   def try_letter(char)
