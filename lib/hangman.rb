@@ -1,5 +1,11 @@
 require_relative "hangman/game"
 
-game = Game.new
+new_game = Game.new
 
-next until game.attempt?
+loop do
+  next until new_game.attempt?
+
+  break unless new_game.play_again?
+
+  new_game = Game.new
+end

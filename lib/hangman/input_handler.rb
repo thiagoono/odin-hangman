@@ -9,4 +9,10 @@ module InputHandler
     end
     char
   end
+
+  def play_again?
+    display_play_again
+    input = gets.strip.downcase
+    input == "y"
+  end
 end
