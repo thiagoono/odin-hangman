@@ -44,7 +44,7 @@ module Displayer
   end
 
   def game_over
-    <<~MESSAGE
+    puts <<~MESSAGE
       =========================
             GAME OVER!
       =========================
