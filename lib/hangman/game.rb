@@ -22,7 +22,10 @@ class Game
     try_letter(char)
 
     display_board
-    end_game if game_ended?
+    return false unless game_ended?
+
+    end_game
+    true
   end
 
   private
@@ -79,5 +82,10 @@ class Game
     return true unless current_state.include?("_")
 
     false
+  end
+
+  def end_game
+    display_answer
+    display_play_again
   end
 end
