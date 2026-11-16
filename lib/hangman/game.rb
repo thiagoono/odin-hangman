@@ -15,6 +15,7 @@ class Game
     @attempted_letters = []
     @current_state = Array.new(@secret_word.size, "_")
     display_board
+    puts secret_word
   end
 
   def attempt?
@@ -52,7 +53,7 @@ class Game
   end
 
   def try_letter(char)
-    if secret_word.include?(char)
+    if secret_word.include?(char.downcase)
       success_attempt(char)
     else
       failed_attempt
@@ -62,7 +63,10 @@ class Game
   end
 
   def success_attempt(char)
-    secret_word.each_char.with_index { |secret_char, index| current_state[index] = char if char == secret_char }
+    secret_word.each_char.with_index do |secret_char, index|
+      current_state[index] = char if char.downcase == secret_char
+    end
+    p current_state
   end
 
   def update_attempted_letters(char)
