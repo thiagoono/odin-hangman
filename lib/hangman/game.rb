@@ -1,8 +1,10 @@
 require_relative "displayer"
+require_relative "input_handler"
 
 # Class responsible to centralize the logic for the game
 class Game
-  include(Displayer)
+  include Displayer
+  include InputHandler
 
   attr_accessor :secret_word, :failures
   attr_reader :words_list, :attempted_letters, :current_state
@@ -24,9 +26,12 @@ class Game
     try_letter(char)
 
     display_board
-    return false unless game_ended?
+    if game_ended?
+      end_game
+      return true
+    end
 
-    end_game
+    false
   end
 
   private
@@ -45,13 +50,6 @@ class Game
     new_word = secret_word
     new_word = words_list.sample until new_word != secret_word
     new_word
-  end
-
-  # Gets the char that will be attempted from the user
-  def ask_attempt
-    char = ""
-    char = gets.strip.upcase until char.match?(/^[A-Z]$/)
-    char
   end
 
   # Checks if the attempt was successful
@@ -84,9 +82,10 @@ class Game
 
   # Checks if the game has ended
   def game_ended?
-    return !game_over if failures >= 6
+    puts failures
+    return game_over if failures >= 6
 
-    return !victory unless current_state.include?("_")
+    return victory unless current_state.include?("_")
 
     false
   end
