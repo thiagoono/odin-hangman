@@ -43,7 +43,7 @@ module Displayer
 
   def display_hangman
     puts <<~BOARD
-        +---+
+        +---+           type "save" to save the game
         |   |
         #{part(0)}   |
        #{part(1)}#{part(2)}#{part(3)}  |
