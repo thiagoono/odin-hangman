@@ -33,12 +33,12 @@ module Displayer
   end
 
   def display_secret_word
-    puts "WORD: #{current_state}"
+    puts "WORD: #{current_state.join(' ')}"
   end
 
   def display_guessed_letters
     puts "\nGuessed letters:"
-    puts wrong_letters.join("-")
+    puts wrong_letters.join(" - ")
   end
 
   def display_remaining_attempts
