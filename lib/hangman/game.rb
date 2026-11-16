@@ -1,10 +1,12 @@
 require_relative "displayer"
 require_relative "input_handler"
+require_relative "serializer"
 
 # Class responsible to centralize the logic for the game
 class Game
   include Displayer
   include InputHandler
+  include Serializer
 
   attr_accessor :secret_word, :failures
   attr_reader :words_list, :attempted_letters, :current_state
