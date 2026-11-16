@@ -45,4 +45,12 @@ class Game
     char = ""
     char = gets.strip.upcase until char.match?(/^[A-Z]$/)
   end
+
+  def try_letter(char)
+    if secret_word.include?(char)
+      success_attempt(char)
+    else
+      failed_attempt(char)
+    end
+  end
 end
