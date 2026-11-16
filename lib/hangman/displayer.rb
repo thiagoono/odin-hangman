@@ -33,7 +33,7 @@ module Displayer
   end
 
   def display_secret_word
-    puts "WORD: #{secret_word}"
+    puts "WORD: #{current_state}"
   end
 
   def display_guessed_letters
