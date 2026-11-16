@@ -15,6 +15,11 @@ class Game
     display_board
   end
 
+  def attempt?
+    char = ask_attempt
+    try_letter(char)
+  end
+
   private
 
   # Reads the words list and filter by word size
@@ -34,5 +39,10 @@ class Game
   def select_word
     new_word = secret_word
     new_word = words_list.sample until new_word != secret_word
+  end
+
+  def ask_attempt
+    char = ""
+    char = gets.strip.upcase until char.match?(/^[A-Z]$/)
   end
 end
