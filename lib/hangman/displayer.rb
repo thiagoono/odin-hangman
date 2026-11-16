@@ -1,22 +1,10 @@
 # Module responsible to display the visuals to the user
 module Displayer
   def display_board
-    puts <<~BOARD
-         +---+
-         |   |
-         O   |
-        /|\\  |
-        / \\  |
-             |
-       =========
-
-      Word: #{word}
-
-      Guessed letters:
-      #{guessed_letters.join(' - ')}
-
-      Remaining attempts: #{remaining_attempts}
-    BOARD
+    display_hangman
+    display_secret_word
+    display_guessed_letters
+    display_remaining_attempts
   end
 
   def display_hangman
@@ -42,6 +30,6 @@ module Displayer
   end
 
   def display_remaining_attempts
-    puts "\nRemaining attempts: #{6 - wrong_letters.size}"
+    puts "\nRemaining attempts: #{6 - failures}"
   end
 end
