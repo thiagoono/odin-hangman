@@ -5,13 +5,13 @@ class Game
   include(Displayer)
 
   attr_accessor :secret_word
-  attr_reader :words_list, :wrong_letters, :current_state
+  attr_reader :words_list, :attempted_letters, :current_state
 
   def initialize
     # Reads the words list and filters by size
     @words_list = filter_list
     @secret_word = select_word
-    @wrong_letters = []
+    @attempted_letters = []
     @current_state = []
     display_board
   end
@@ -55,5 +55,9 @@ class Game
 
   def success_attempt(char)
     secret_word.each_char.with_index { |secret_char, index| current_state[index] = char if char == secret_char }
+  end
+
+  def update_attempted_letters(char)
+    attempted_letters << char
   end
 end

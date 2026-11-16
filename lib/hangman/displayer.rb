@@ -38,7 +38,7 @@ module Displayer
 
   def display_guessed_letters
     puts "\nGuessed letters:"
-    puts wrong_letters.join(" - ")
+    puts attempted_letters.join(" - ")
   end
 
   def display_remaining_attempts
