@@ -32,4 +32,32 @@ module Displayer
   def display_remaining_attempts
     puts "\nRemaining attempts: #{6 - failures}"
   end
+
+  def victory
+    puts <<~MESSAGE
+      =========================
+            YOU WIN!
+      =========================
+
+      Congratulations! You guessed the word:
+    MESSAGE
+  end
+
+  def game_over
+    <<~MESSAGE
+      =========================
+            GAME OVER!
+      =========================
+
+      The correct word was:
+    MESSAGE
+  end
+
+  def display_answer
+    puts secret_word
+  end
+
+  def display_play_again
+    puts "\nWould you like to play again? (y/n)"
+  end
 end

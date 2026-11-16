@@ -24,8 +24,7 @@ class Game
     display_board
     return false unless game_ended?
 
-    end_game
-    true
+    end_game?
   end
 
   private
@@ -77,15 +76,20 @@ class Game
   end
 
   def game_ended?
-    return true if failures >= 6
+    return !game_over if failures >= 6
 
-    return true unless current_state.include?("_")
+    return !victory unless current_state.include?("_")
 
     false
   end
 
-  def end_game
+  def end_game?
     display_answer
     display_play_again
+
+    input = gets.strip.downcase
+    return true if input == "y"
+
+    false
   end
 end
