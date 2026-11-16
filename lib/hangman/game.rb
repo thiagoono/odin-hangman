@@ -34,8 +34,6 @@ class Game
     filtered_list = []
     File.open(File.join(__dir__, "..", "..", "data", "google-10000-english-no-swears.txt"), "r") do |file|
       file.readlines.each { |word| filtered_list << word if word.size.between?(5, 12) }
-
-      file.close
     end
     filtered_list
   end
