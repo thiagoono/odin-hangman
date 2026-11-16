@@ -32,8 +32,8 @@ class Game
   # Reads the words list and filter by word size
   def filter_list
     filtered_list = []
-    File.open("../../data/google-10000-english-no-swears.txt", "r") do |file|
-      while (word = file.readline)
+    File.open(File.join(__dir__, "..", "..", "data", "google-10000-english-no-swears.txt"), "r") do |file|
+      while (word = file.read)
         filtered_list << word if word.size.between?(5, 12)
       end
 
