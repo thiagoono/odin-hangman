@@ -7,7 +7,7 @@ class Game
   attr_accessor :secret_word
   attr_reader :words_list, :wrong_letters
 
-  def initializer
+  def initialize
     # Reads the words list and filters by size
     @words_list = filter_list
     @secret_word = select_word
