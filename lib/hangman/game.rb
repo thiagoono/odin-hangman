@@ -13,13 +13,16 @@ class Game
     @secret_word = select_word
     @failures = 0
     @attempted_letters = []
-    @current_state = []
+    @current_state = Array.new(@secret_word.size, "_")
     display_board
   end
 
   def attempt?
     char = ask_attempt
     try_letter(char)
+
+    display_board
+    end_game if game_ended?
   end
 
   private
@@ -68,5 +71,13 @@ class Game
 
   def failed_attempt
     failures + 1
+  end
+
+  def game_ended?
+    return true if failures >= 6
+
+    return true unless current_state.include?("_")
+
+    false
   end
 end
