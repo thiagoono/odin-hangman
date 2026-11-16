@@ -82,10 +82,15 @@ class Game
 
   # Checks if the game has ended
   def game_ended?
-    puts failures
-    return game_over if failures >= 6
+    if failures >= 6
+      game_over
+      return true
+    end
 
-    return victory unless current_state.include?("_")
+    unless current_state.include?("_")
+      victory
+      return true
+    end
 
     false
   end
