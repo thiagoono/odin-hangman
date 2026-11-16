@@ -48,11 +48,9 @@ class Game
   end
 
   def try_letter(char)
-    if secret_word.include?(char)
-      success_attempt(char)
-    else
-      failed_attempt(char)
-    end
+    success_attempt(char) if secret_word.include?(char)
+
+    update_attempted_letters(char)
   end
 
   def success_attempt(char)
