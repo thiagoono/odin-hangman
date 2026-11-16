@@ -24,6 +24,7 @@ class Game
     char = ask_attempt
     try_letter(char)
 
+    clear_board
     display_board
     if game_ended?
       end_game

@@ -13,6 +13,7 @@ module InputHandler
   def play_again?
     display_play_again
     input = gets.strip.downcase
+    23.times { print "\e[1A\e[2K" } if input == "y"
     input == "y"
   end
 
